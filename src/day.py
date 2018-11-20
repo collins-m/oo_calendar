@@ -9,7 +9,8 @@ class Day:
 		self.appointments = []
 
 	def add_appointment(self, name, start, end):
-		""" Using the Appointment class, we append an Appointment object to the list.
+		""" Using the Appointment class, we append an Appointment object
+			to the list.
 		"""
 		name = Appointment(name, start, end)
 		self.appointments.append(name)
@@ -18,7 +19,7 @@ class Day:
 		""" We remove the selected Appointment from the object.
 		"""
 		pass
-	
+
 	def __str__(self):
 		""" Prints the Day, and its list of Appointments.
 		"""

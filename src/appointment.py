@@ -1,9 +1,10 @@
 class Appointment:
 
 	def __init__(self, name=None, start=None, end=None):
-		""" Initialized with a name, the time it starts, and the time it finishes.
+		""" Initialized with a name, the time it starts, and the time it
+			finishes.
 		"""
-		self.id = name
+		self.id = name.capitalize()
 		self.start = start
 		self.end = end
 
