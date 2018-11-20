@@ -1,8 +1,6 @@
-from appointment import Appointment
-
 class Day:
 
-	def __init__(self, name):
+	def __init__(self, name=None):
 		""" Initialized with a name, and a list of appointments.
 		"""
 		self.id = name
