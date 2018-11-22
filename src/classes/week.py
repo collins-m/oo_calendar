@@ -1,9 +1,27 @@
 class Week:
 
-    def __init__(self, days=None):
+    def __init__(self):
         """ initialized with a list of day objects
             """
-        self.days =  days
+        self.a_days = [
+            "sun",
+            "mon",
+            "tue",
+            "wed",
+            "thu",
+            "fri",
+            "sat"
+        ]
+        self.days =  {
+            "sun": [],
+        	"mon": [],
+        	"tue": [],
+        	"wed": [],
+        	"thu": [],
+        	"fri": [],
+        	"sat": [],
+
+        }
 
     def __str__(self):
         """ prints each of the days in turn

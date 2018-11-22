@@ -6,12 +6,12 @@ class Day:
 		self.id = name
 		self.appointments = []
 
-    def check_overlap(self, element):
+    def no_overlap(self, start, end):
         """ check if appointment overlaps with another appointment in the
             given day, returns true if no overlap
             """
         for appointment in self.appointments:
-            if ((element.start < appointment.start) and (appointment.start < element.end)) or ((element.start < appointment.end) and (appointment.end < element.end)):
+            if ((start < appointment.start) and (appointment.start < end)) or ((start < appointment.end) and (appointment.end < end)):
                 return False
             else:
                 return True
@@ -25,8 +25,8 @@ class Day:
 		""" using the appointment class, we append an appointment object
 			to the list, it keeps them in chronological order as well
 			"""
-		name = Appointment(name, start, end)
-        if check_overlap(name):
+        if no_overlap(start, end):
+            name = Appointment(name, start, end)
     		self.appointments.append(name)
             self.appointments.sort(key=take_start_time)
         else:
@@ -43,6 +43,6 @@ class Day:
         apps = []
         for app in self.appointments:
             apps.append(str(app))
-        apps.append("-"*50)
+        apps.append("-"*76)
         apps = "\n".join(apps)
 		return "Appointments for", self.name.capitalize()+"\n\n"+apps
