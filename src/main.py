@@ -30,12 +30,12 @@ class Main:
     def view_day(self, day):
         """ view a given day and its appointments
         """
-        return str(self.week.days[day])
+        print(str(self.week.days[day]))
 
     def view_week(self):
         """ view every day and their appointments
         """
-        return str(self.week)
+        print(str(self.week))
 
     def view(self, arg):
         """ this redirects to the appropriate view function
@@ -48,8 +48,8 @@ class Main:
     def add(self, command):
         """ adds an appointment to the given day
         """
-        app, start, end = command[0], command[1], command[2]
-        week.days[day].add_appointment(app, start, end)
+        day, app, start, end = command[0], command[1], command[2], command[3]
+        self.week.days[day].add_appointment(app, start, end)
 
     def remove(self, command):
         """ removes an appointment from the given day

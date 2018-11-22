@@ -22,7 +22,7 @@ class Day:
         for appointment in self.appointments:
 
             if ((self.min_conv(start) <self. min_conv(appointment.start)) and (self.min_conv(appointment).start < self.min_conv(end))) or ((self.min_conv(start) <self. min_conv(appointment).end) and (self.min_conv(appointment).end < self.min_conv(end))):
-                return False
+                return True
 
             else:
                 return True
@@ -52,8 +52,11 @@ class Day:
         """ prints the day, and its list of appointments
         """
         apps = []
-        for app in self.appointments:
-            apps.append(str(app))
-        apps.append("-"*76)
-        apps = "\n".join(apps)
-        return "Appointments for", self.id.capitalize()+"\n\n"+apps
+        if not len(self.appointments):
+            return self.id.capitalize()+"\n\n"+"No appointments for this day."+"\n"+"-"*76
+        else:
+            for app in self.appointments:
+                apps.append(str(app))
+            apps.append("-"*76)
+            apps = "\n".join(apps)
+            return "Appointments for "+self.id.capitalize()+"\n\n"+apps

@@ -25,11 +25,11 @@ class Week:
 
         }
 
-    def __str__(self): # Needs edit
+    def __str__(self):
         """ prints each of the days in turn
         """
         apps = []
         for day in self.a_days:
-            apps.append(str(day))
+            apps.append(str(self.days[day]))
         apps = "\n".join(apps)
         return apps
