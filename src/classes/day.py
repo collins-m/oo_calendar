@@ -8,45 +8,32 @@ class Day:
         self.id = name
         self.appointments = []
 
-    def min_conv(time):
-        """ converts time <hh:mm> to minute integer
-        """
-        hh, mm = time.split(":")
-        minutes = (hh * 60) + mm
-        return minutes
-
     def no_overlap(self, start, end):
         """ check if appointment overlaps with another appointment in the
             given day, returns true if no overlap
         """
-        for appointment in self.appointments:
-
-            if ((self.min_conv(start) <self. min_conv(appointment.start)) and (self.min_conv(appointment).start < self.min_conv(end))) or ((self.min_conv(start) <self. min_conv(appointment).end) and (self.min_conv(appointment).end < self.min_conv(end))):
-                return True
-
-            else:
-                return True
+        pass
 
     def take_start_time(self, element):
         """ helper function to return start-time for sorting lists
         """
-        return element.start
+        return element.min_conv(element.start)
 
     def add_appointment(self, name, start, end):
         """ using the appointment class, we append an appointment object
             to the list, it keeps them in chronological order as well
         """
-        if self.no_overlap(start, end):
-            name = Appointment(name, start, end)
-            self.appointments.append(name)
-            self.appointments.sort(key=self.take_start_time)
-        else:
-            print("Invalid appointment time, overlaps with another appointment.")
+        name = Appointment(name, start, end)
+        self.appointments.append(name)
+        self.appointments.sort(key=self.take_start_time)
 
     def remove_appointment(self, name):
         """ removes the selected appointment from the object
         """
-        self.appointments.remove(name)
+        for i in self.appointments:
+            if i.id == name:
+                self.appointments.remove(i)
+                break
 
     def __str__(self):
         """ prints the day, and its list of appointments
@@ -54,9 +41,12 @@ class Day:
         apps = []
         if not len(self.appointments):
             return self.id.capitalize()+"\n\n"+"No appointments for this day."+"\n"+"-"*76
+            return "{}\n\nNo appointments for this day\n{}".format(
+            self.id.capitalize(), "-"*76)
         else:
             for app in self.appointments:
                 apps.append(str(app))
             apps.append("-"*76)
             apps = "\n".join(apps)
-            return "Appointments for "+self.id.capitalize()+"\n\n"+apps
+            return "Appointments for {}\n\n{}".format(
+            self.id.capitalize(), apps)

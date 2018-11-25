@@ -32,4 +32,4 @@ class Week:
         for day in self.a_days:
             apps.append(str(self.days[day]))
         apps = "\n".join(apps)
-        return apps
+        return "{}".format(apps)

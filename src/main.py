@@ -55,7 +55,7 @@ class Main:
         """ removes an appointment from the given day
         """
         day, app = command[0], command[1]
-        week.days[day].remove_appointment(app)
+        self.week.days[day].remove_appointment(app)
 
     def main(self):
         """ Runs the program and initializes the environment
