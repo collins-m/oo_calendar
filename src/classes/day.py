@@ -8,11 +8,20 @@ class Day:
         self.id = name
         self.appointments = []
 
-    def no_overlap(self, start, end):
+    def no_overlap(self, new_app):
         """ check if appointment overlaps with another appointment in the
             given day, returns true if no overlap
         """
-        pass
+        for app in self.appointments:
+
+            na_start = new_app.min_conv(new_app.start)
+            na_end = new_app.min_conv(new_app.end)
+            app_start = app.min_conv(app.start)
+            app_end = app.min_conv(app.end)
+
+            if (na_start < app_start < na_end) or (na_start < app_end < na_end):
+                return False
+        return True
 
     def take_start_time(self, element):
         """ helper function to return start-time for sorting lists
@@ -24,8 +33,11 @@ class Day:
             to the list, it keeps them in chronological order as well
         """
         name = Appointment(name, start, end)
-        self.appointments.append(name)
-        self.appointments.sort(key=self.take_start_time)
+        if self.no_overlap(name):
+            self.appointments.append(name)
+            self.appointments.sort(key=self.take_start_time)
+        else:
+            print("Appointment overlaps with another, cannot reserve time.")
 
     def remove_appointment(self, name):
         """ removes the selected appointment from the object
