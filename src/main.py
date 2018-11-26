@@ -54,10 +54,7 @@ class Main:
 
             elif command[0] == "remove":
                 self._week.remove(command[1:])
-
-            # except:
-                # print("Input Error, type \"help\" for a list of commands")
-
+                
 if __name__ == "__main__":
     main = Main()
     main.main()
