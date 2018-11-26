@@ -1,5 +1,3 @@
-from classes.appointment import Appointment
-from classes.day import Day
 from classes.week import Week
 
 class Main:
@@ -27,35 +25,6 @@ class Main:
         print("exit")
         print("-"*76)
 
-    def view_day(self, day):
-        """ view a given day and its appointments
-        """
-        print(str(self.week.days[day]))
-
-    def view_week(self):
-        """ view every day and their appointments
-        """
-        print(str(self.week))
-
-    def view(self, arg):
-        """ this redirects to the appropriate view function
-        """
-        if arg == "week":
-            self.view_week()
-        else:
-            self.view_day(arg)
-
-    def add(self, command):
-        """ adds an appointment to the given day
-        """
-        day, app, start, end = command[0], command[1], command[2], command[3]
-        self.week.days[day].add_appointment(app, start, end)
-
-    def remove(self, command):
-        """ removes an appointment from the given day
-        """
-        day, app = command[0], command[1]
-        self.week.days[day].remove_appointment(app)
 
     def main(self):
         """ Runs the program and initializes the environment
@@ -64,7 +33,6 @@ class Main:
         print("Type \"help\" for a list of commands.")
         print("-"*76)
         while 1:
-            # try:
             command = input().split()
             print()
 
@@ -76,13 +44,16 @@ class Main:
                 self.help()
 
             elif command[0] == "view":
-                self.view(command[1])
+                if command[1] == "week":
+                    print(str(self.week))
+                else:
+                    self.week.view_day(command[1])
 
             elif command[0] == "add":
-                self.add(command[1:])
+                self.week.add(command[1:])
 
             elif command[0] == "remove":
-                self.remove(command[1:])
+                self.week.remove(command[1:])
 
             # except:
                 # print("Input Error, type \"help\" for a list of commands")

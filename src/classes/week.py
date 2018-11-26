@@ -25,6 +25,23 @@ class Week:
 
         }
 
+    def view_day(self, day):
+        """ view a given day and its appointments
+        """
+        print(str(self.days[day]))
+
+    def add(self, command):
+        """ adds an appointment to the given day
+        """
+        day, app, start, end = command[0], command[1], command[2], command[3]
+        self.days[day].add_appointment(app, start, end)
+
+    def remove(self, command):
+        """ removes an appointment from the given day
+        """
+        day, app = command[0], command[1]
+        self.days[day].remove_appointment(app)
+
     def __str__(self):
         """ prints each of the days in turn
         """
