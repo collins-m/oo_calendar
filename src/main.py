@@ -3,9 +3,9 @@ from classes.week import Week
 class Main:
 
     def __init__(self):
-        self.week = Week()
+        self._week = Week()
 
-    def help(self):
+    def _help(self):
         """ prints the user manual
         """
         print("-"*76)
@@ -41,19 +41,19 @@ class Main:
                 break
 
             elif command[0] == "help":
-                self.help()
+                self._help()
 
             elif command[0] == "view":
                 if command[1] == "week":
-                    print(str(self.week))
+                    print(str(self._week))
                 else:
-                    self.week.view_day(command[1])
+                    print(str(self._week.get()[command[1]]))
 
             elif command[0] == "add":
-                self.week.add(command[1:])
+                self._week.add(command[1:])
 
             elif command[0] == "remove":
-                self.week.remove(command[1:])
+                self._week.remove(command[1:])
 
             # except:
                 # print("Input Error, type \"help\" for a list of commands")
